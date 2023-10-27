@@ -19,7 +19,11 @@ namespace btl1.Controllers
             var lstsanpham = db.Sanphams.ToList();
             return View(lstsanpham);
         }
-
+        public IActionResult sptheochatlieu(int maCl)
+        {
+            List<Sanpham> lstsanpham = db.Sanphams.Where(x=>x.MaCl == maCl).ToList();
+            return View(lstsanpham);
+        }
         public IActionResult Privacy()
         {
             return View();
