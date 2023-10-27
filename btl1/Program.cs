@@ -1,7 +1,16 @@
+using btl1.Models;
+using btl1.Repository;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+var connectionString = builder.Configuration.GetConnectionString("QLbanKhanContext");
+builder.Services.AddDbContext<QlbanKhanContext>(x => x.UseSqlServer(connectionString));
+
+builder.Services.AddScoped<IChatLieuRepository, ChatLieuRepository>();
 
 var app = builder.Build();
 
