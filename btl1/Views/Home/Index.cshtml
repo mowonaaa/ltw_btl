@@ -14,7 +14,10 @@
 				</div>
 			</div>
 			<div class="product-body">
-				<h3 class="product-name"><a href="#">@item.Tensp</a></h3>
+				<h3 class="product-name">
+					<a asp-controller="Product" asp-action="ChiTietSP"
+					   asp-route-masp="@item.Masp">@item.Tensp</a>
+				</h3>
 				<h4 class="product-price">@item.Giatien vnd</h4>
 				<div class="product-rating">
 					<i class="fa fa-star"></i>
@@ -46,7 +49,10 @@
 				</div>
 			</div>
 			<div class="product-body">
-				<h3 class="product-name"><a href="#">@item.Tensp</a></h3>
+				<h3 class="product-name">
+					<a asp-controller="Product" asp-action="ChiTietSP"
+					   asp-route-masp="@item.Masp">@item.Tensp</a>
+				</h3>
 				<h4 class="product-price">@item.Giatien vnd</h4>
 				<div class="product-rating">
 					<i class="fa fa-star"></i>
