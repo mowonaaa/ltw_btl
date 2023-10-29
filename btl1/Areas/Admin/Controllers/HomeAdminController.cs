@@ -44,5 +44,27 @@ namespace btl1.Areas.Admin.Controllers
             }
             return View();
         }
+        [Route("SuaSanPham")]
+        [HttpGet]
+        public IActionResult SuaSanPham(string Masp)
+        {
+            ViewBag.Mahang = new SelectList(db.Hangsanxuats.ToList(), "Mahang", "Tenhang");
+            ViewBag.MaCl = new SelectList(db.ChatLieus.ToList(), "MaCl", "TenCl");
+            var sanpham = db.Sanphams.Find(Masp);
+            return View(sanpham);
+        }
+        [Route("SuaSanPham")]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult SuaSanPham(Sanpham sanpham)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(sanpham).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("DanhMucSanPham","HomeAdmin");
+            }
+            return View(sanpham);
+        }
     }
 }
