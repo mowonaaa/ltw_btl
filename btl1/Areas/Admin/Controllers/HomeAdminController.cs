@@ -46,7 +46,7 @@ namespace btl1.Areas.Admin.Controllers
         }
         [Route("SuaSanPham")]
         [HttpGet]
-        public IActionResult SuaSanPham(string Masp)
+        public IActionResult SuaSanPham(int Masp)
         {
             ViewBag.Mahang = new SelectList(db.Hangsanxuats.ToList(), "Mahang", "Tenhang");
             ViewBag.MaCl = new SelectList(db.ChatLieus.ToList(), "MaCl", "TenCl");
