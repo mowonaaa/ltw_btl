@@ -1,4 +1,5 @@
 ﻿using btl1.Models;
+using btl1.Models.Authentication;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
@@ -13,7 +14,7 @@ namespace btl1.Controllers
         {
             _logger = logger;
         }
-
+        [Authentication]
         public IActionResult Index()
         {
             var lstsanpham = db.Sanphams.ToList();

@@ -66,5 +66,23 @@ namespace btl1.Areas.Admin.Controllers
             }
             return View(sanpham);
         }
+        [Route("XoaSanPham")]
+        [HttpGet]
+        public IActionResult XoaSanPham(int Masp)
+        {
+            TempData["Message"] = "";
+            var Chitietdonhang = db.Chitietdonhangs.Where(x=>x.Masp == Masp).ToList();
+            if(Chitietdonhang.Count() > 0)
+            {
+                TempData["Message"] = "Can not delete this product";
+                return RedirectToAction("DanhMucSanPham", "HomeAdmin");
+            }
+            var AnhSP=db.AnhSps.Where(x=>x.Masp==Masp);
+            if (AnhSP.Any()) db.RemoveRange(AnhSP);
+            db.Remove(db.Sanphams.Find(Masp));
+            db.SaveChanges();
+            TempData["Message"] = "Delete!";
+            return RedirectToAction("DanhMucSanPham", "HomeAdmin");
+        }
     }
 }
