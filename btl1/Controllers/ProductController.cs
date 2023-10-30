@@ -8,7 +8,6 @@ namespace btl1.Controllers
 	public class ProductController : Controller
 	{
 		QlbanKhanContext db = new QlbanKhanContext();
-		private readonly ILogger<ProductController> _logger;
 		public IActionResult Index()
 		{
 			return View();

@@ -23,11 +23,17 @@ namespace btl1.Controllers
             if (HttpContext.Session.GetString("UserName") == null)
             {
                 var u=db.Nguoidungs.Where(x=>x.Email.Equals(user.Email) && x.Matkhau.Equals(user.Matkhau)).FirstOrDefault();
-                if (u != null)
+                if (u != null && u.Idquyen == 2)
                 {
                     HttpContext.Session.SetString("UserName", u.Email.ToString());
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction( "Index", "Admin");
                 }
+                else if(u != null && u.Idquyen == 1)
+                {
+					HttpContext.Session.SetString("UserName", u.Email.ToString());
+					return RedirectToAction( "Index", "Home");
+
+				}
             }
             return View();
         }
