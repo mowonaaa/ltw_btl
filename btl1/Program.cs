@@ -11,6 +11,7 @@ var connectionString = builder.Configuration.GetConnectionString("QLbanKhanConte
 builder.Services.AddDbContext<QlbanKhanContext>(x => x.UseSqlServer(connectionString));
 
 builder.Services.AddScoped<IChatLieuRepository, ChatLieuRepository>();
+builder.Services.AddScoped<IBrandRepository, BrandRepository>();
 builder.Services.AddSession();
 var app = builder.Build();
 

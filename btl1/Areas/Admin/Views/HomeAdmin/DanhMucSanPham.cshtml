@@ -1,5 +1,6 @@
-﻿@model IEnumerable<btl1.Models.Sanpham>
-
+﻿@using btl1.Models;
+@using X.PagedList.Mvc.Core;
+@model X.PagedList.IPagedList<Sanpham>
 @{
     ViewData["Title"] = "DanhMucSanPham";
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
@@ -15,16 +16,16 @@
     <thead>
         <tr class="table-warning">
             <th>
-                @Html.DisplayNameFor(model => model.Tensp)
+                Tên sản phẩm
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Giatien)
+                Giá tiền
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Soluong)
+                Số lượng
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Anhbia)
+                Ảnh bìa
             </th>
             <th></th>
         </tr>
@@ -63,3 +64,8 @@
 }
     </tbody>
 </table>
+@Html.PagedListPager(Model, page => Url.Action("DanhMucSanPham", new{page = page}),new
+X.PagedList.Web.Common.PagedListRenderOptions(){
+    LiElementClasses = new List<String> {"page-item"},
+    PageClasses = new List<String> {"page-link"}
+})

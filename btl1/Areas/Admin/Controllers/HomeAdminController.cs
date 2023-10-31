@@ -1,6 +1,8 @@
 ﻿using btl1.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
+using X.PagedList;
 
 namespace btl1.Areas.Admin.Controllers
 {
@@ -17,13 +19,16 @@ namespace btl1.Areas.Admin.Controllers
             return View();
         }
         [Route("danhmucsanpham")]
-        public IActionResult DanhMucSanPham()
-        {
-            var lstSanPham=db.Sanphams.ToList();
-            return View(lstSanPham);
-        }
+		public IActionResult DanhMucSanPham(int? page)
+		{
+			int pageSize = 10;
+			int pageNumber = page == null || page < 0 ? 1 : page.Value;
+			var lstsanpham = db.Sanphams.AsNoTracking().OrderBy(x => x.Tensp);
+			PagedList<Sanpham> lst = new PagedList<Sanpham>(lstsanpham, pageNumber, pageSize);
+			return View(lst);
+		}
 
-        [Route("ThemSanPhamMoi")]
+		[Route("ThemSanPhamMoi")]
         [HttpGet]
         public IActionResult ThemSanPhamMoi()
         {

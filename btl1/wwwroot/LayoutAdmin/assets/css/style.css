@@ -49,9 +49,12 @@
 /* === Import template variables === */
 /*-------------------------------------------------------------------*/
 /* === SCSS Compass Functions === */
-
+.store-filter {
+    margin-bottom: 15px;
+    margin-top: 15px;
+}
 @-webkit-keyframes flash {
-  0% {
+    0% {
     opacity: 1; }
   25% {
     opacity: 0; }
