@@ -88,8 +88,12 @@
 
 		<ul class="product-links">
 			<li>Category:</li>
-			<li><a href="#">@ViewBag.Chatlieu<a></li>
-			<li><a href="#">@ViewBag.TenHang</a></li>
+			<li><a asp-controller="Store" asp-action="SanPhamTheoChatLieu"
+			asp-route-maCl="@Model.ChatLieu.MaCl"> @Model.ChatLieu.TenCl </a></li>
+			<li>
+				<a asp-controller="Store" asp-action="SanPhamTheoBrand"
+				   asp-route-maHang="@Model.Hangsanxuat.Mahang">@Model.Hangsanxuat.Tenhang</a>
+			</li>
 		</ul>
 
 		<ul class="product-links">

@@ -17,9 +17,9 @@ namespace btl1.Controllers
 			var sanPham = db.Sanphams.SingleOrDefault(x => x.Masp == maSp);
 			var lstsanpham = db.Sanphams.Where(x => x.MaCl == sanPham.MaCl).ToList();
 			var anhSanPham = db.AnhSps.Where(x => x.Masp == maSp).ToList();
-			var homeProductDetailViewModel = new HomeProductDetailViewModel(sanPham, anhSanPham, lstsanpham);
-			ViewBag.ChatLieu = db.ChatLieus.Where(x => x.MaCl == sanPham.MaCl);
-            ViewBag.TenHang = db.Hangsanxuats.Where(x => x.Mahang == sanPham.Mahang);
+			ChatLieu chatLieu = db.ChatLieus.SingleOrDefault(x => x.MaCl == sanPham.MaCl);
+			Hangsanxuat hang = db.Hangsanxuats.SingleOrDefault(x => x.Mahang == sanPham.Mahang);
+			var homeProductDetailViewModel = new HomeProductDetailViewModel(sanPham, anhSanPham, lstsanpham, chatLieu, hang);
             return View(homeProductDetailViewModel);
 		}
 	}
