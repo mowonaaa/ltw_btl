@@ -3,7 +3,8 @@
     ViewData["Title"] = "SanPhamTheoChatLieu";
     Layout = "~/Views/Shared/_LayoutStore.cshtml";
 }
-@model List<Sanpham>
+@using X.PagedList.Mvc.Core;
+@model X.PagedList.IPagedList<Sanpham>
 <div class="row">
 	@foreach (var item in Model)
 	{
@@ -39,8 +40,9 @@
 		<!-- /product -->
 	}
 </div>
-@* <div class="store-filter clearfix">
-	@Html.PagedListPager(Model, page => Url.Action("Index", new{page = page}))
-</div> *@
+<div class="store-filter clearfix">
+	@Html.PagedListPager(Model, page => Url.Action("SanPhamTheoChatLieu", new{page = page, maCl = ViewBag.maCl}))
+</div>
+
 
 

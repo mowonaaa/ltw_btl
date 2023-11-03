@@ -2,11 +2,11 @@
 @foreach (var item in Model)
 {
 	<div class="input-checkbox">
-		<input type="checkbox" id="category-1">
-		<label for="category-1">
+		<a asp-controller="Store" asp-action="SanPhamTheoChatLieu"
+			asp-route-maCl="@item.MaCl" id="category-1">
 			<span></span>
 			@item.TenCl
 			<small></small>
-		</label>
+		</a>
 	</div>
 }

@@ -16,15 +16,28 @@ namespace btl1.Controllers
 			PagedList<Sanpham> lst = new PagedList<Sanpham>(lstsanpham, pageNumber, pageSize);
 			return View(lst);
 		}
-		public IActionResult SanPhamTheoChatLieu(int maCl)
+		public IActionResult SanPhamTheoChatLieu(int maCl, int? page)
 		{
-			List<Sanpham> lst = db.Sanphams.Where(x => x.MaCl == maCl).OrderBy(x=> x.Tensp).ToList();
+			int pageSize = 6;
+			int pageNumber = page == null || page < 0 ? 1 : page.Value;
+			var lstsanpham = db.Sanphams.AsNoTracking().Where(x => x.MaCl == maCl).OrderBy(x => x.Tensp);
+			PagedList<Sanpham> lst = new PagedList<Sanpham>(lstsanpham, pageNumber, pageSize);
+			ViewBag.MaCl = maCl;
 			return View(lst);
 		}
-		public IActionResult SanPhamTheoBrand(int maHang) 
+		public IActionResult SanPhamTheoBrand(int maHang, int? page) 
 		{
 
-			List<Sanpham> lst = db.Sanphams.Where(x => x.Mahang == maHang).OrderBy(x => x.Tensp).ToList();
+			int pageSize = 6;
+			int pageNumber = page == null || page < 0 ? 1 : page.Value;
+			var lstsanpham = db.Sanphams.AsNoTracking().Where(x => x.Mahang == maHang).OrderBy(x => x.Tensp);
+			PagedList<Sanpham> lst = new PagedList<Sanpham>(lstsanpham, pageNumber, pageSize);
+			ViewBag.Mahang = maHang;
+			return View(lst);
+		}
+		public IActionResult Search(string tensp)
+		{
+			List<Sanpham> lst = db.Sanphams.Where(x => x.Tensp.Contains(tensp)).ToList();
 			return View(lst);
 		}
     }
